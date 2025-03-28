@@ -21,7 +21,7 @@ const compScore = document.querySelector("#comp-score");
 const scoreboard = document.querySelector("#scoreboard");
 
 function gameover() {
-    if (rounds === 5) {
+    if (humanScore === 5 || computerScore === 5) {
         scoreboard.textContent = "Gameover! Final score:";
         document.querySelector("#rock-button").disabled = true;
         document.querySelector("#paper-button").disabled = true;
