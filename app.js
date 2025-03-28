@@ -5,10 +5,10 @@ function getComputerChoice() {
     else return "scissors";
 }
 
-function getHumanChoice() {
-    let choice = prompt("Please make your pick (rock, paper, or scissors)");
-    return choice.toLowerCase()
-}
+//function getHumanChoice() {
+//    let choice = prompt("Please make your pick (rock, paper, or scissors)");
+//   return choice.toLowerCase()
+//}
 
 let computerScore = 0;
 let humanScore = 0;
