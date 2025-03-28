@@ -4,55 +4,82 @@ function getComputerChoice() {
     else if (randomNumber > 66) return "paper";
     else return "scissors";
 }
-
-//function getHumanChoice() {
-//    let choice = prompt("Please make your pick (rock, paper, or scissors)");
-//   return choice.toLowerCase()
-//}
+ 
+let choice = ""
 
 let computerScore = 0;
 let humanScore = 0;
+let rounds = 0;
 
+const rockButton = document.querySelector("#rock-button");
+const paperButton = document.querySelector("#paper-button");
+const scissorsButton = document.querySelector("#scissors-button");
+
+const result = document.querySelector("#result");
+const playerScore = document.querySelector("#player-score");
+const compScore = document.querySelector("#comp-score");
+const scoreboard = document.querySelector("#scoreboard");
+
+function gameover() {
+    if (rounds === 5) {
+        scoreboard.textContent = "Gameover! Final score:";
+        document.querySelector("#rock-button").disabled = true;
+        document.querySelector("#paper-button").disabled = true;
+        document.querySelector("#scissors-button").disabled = true;
+        }
+ }  
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === "rock" && computerChoice === "scissors") {
-        alert("Computer chose scissors. You win!")
+        result.textContent = "Computer chose scissors. You win!";
         humanScore = ++humanScore;
+        playerScore.textContent = humanScore;
+        compScore.textContent = computerScore;
     }
     else if (humanChoice === "paper" && computerChoice === "rock") {
-        alert("Computer chose rock. You win!"); 
+        result.textContent = "Computer chose rock. You win!"; 
         humanScore = ++humanScore;
+        playerScore.textContent = humanScore;
+        compScore.textContent = computerScore;
     }
     else if (humanChoice === "scissors" && computerChoice === "paper") {
-        alert("Computer chose paper. You win!");
+        result.textContent = "Computer chose paper. You win!";
         humanScore = ++humanScore;
+        playerScore.textContent = humanScore;
+        compScore.textContent = computerScore;
     }
     else if (humanChoice === computerChoice) {
-        alert("Tie!");
+        result.textContent = "Tie!";
+        playerScore.textContent = humanScore;
+        compScore.textContent = computerScore;
     }
     else {
-        alert("Computer beat you or you can't spell. YOU LOSE");
+        result.textContent = "Computer chose " + computerChoice + ". You lose!";
         computerScore = ++computerScore;
+        playerScore.textContent = humanScore;
+        compScore.textContent = computerScore;
     }
+    rounds = ++rounds;
+    gameover();
 }
 
-function playGame() {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);    
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    alert("Gameover. Final score Computer: " + computerScore + " and Player: " + humanScore)
-}
+rockButton.addEventListener('click', () => {
+    humanChoice = "rock";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(rounds);
+});
 
-playGame()
+paperButton.addEventListener('click', () => {
+    humanChoice = "paper";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(rounds);
+})
+
+scissorsButton.addEventListener("click", () => {
+    humanChoice = "scissors";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(rounds);
+})
